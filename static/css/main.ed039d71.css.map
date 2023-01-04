@@ -1,0 +1,1 @@
+{"version":3,"file":"static/css/main.ed039d71.css","mappings":"AAAA,EAGC,qBAAsB,CACtB,sCAAyC,CAHzC,QAAS,CACT,SAGD","sources":["App.css"],"sourcesContent":["* {\n\tmargin: 0;\n\tpadding: 0;\n\tbox-sizing: border-box;\n\tfont-family: Arial, Helvetica, sans-serif;\n}\n"],"names":[],"sourceRoot":""}
