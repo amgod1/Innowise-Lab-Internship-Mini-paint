@@ -13,22 +13,14 @@ interface IFC {
 	measurementId: string;
 }
 
-const apiKeyFB: string = process.env.REACT_APP_APIKEY!;
-const authDomainFB: string = process.env.REACT_APP_AUTH_DOMAIN!;
-const projectIdFB: string = process.env.REACT_APP_PROJECT_ID!;
-const storageBucketFB: string = process.env.REACT_APP_STORAGE_BUCKET!;
-const messagingSenderIdFB: string = process.env.REACT_APP_MESSAGING_SENDER_ID!;
-const appIdFB: string = process.env.REACT_APP_APP_ID!;
-const measurementIdFB: string = process.env.REACT_APP_MEASUREMENT_ID!;
-
 const firebaseConfig: IFC = {
-	apiKey: apiKeyFB,
-	authDomain: authDomainFB,
-	projectId: projectIdFB,
-	storageBucket: storageBucketFB,
-	messagingSenderId: messagingSenderIdFB,
-	appId: appIdFB,
-	measurementId: measurementIdFB,
+	apiKey: process.env.REACT_APP_APIKEY!,
+	authDomain: process.env.REACT_APP_AUTH_DOMAIN!,
+	projectId: process.env.REACT_APP_PROJECT_ID!,
+	storageBucket: process.env.REACT_APP_STORAGE_BUCKET!,
+	messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID!,
+	appId: process.env.REACT_APP_APP_ID!,
+	measurementId: process.env.REACT_APP_MEASUREMENT_ID!,
 };
 
 const app = initializeApp(firebaseConfig);
