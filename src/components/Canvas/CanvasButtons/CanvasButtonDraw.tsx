@@ -32,11 +32,6 @@ const buttonDrawInfo = [
 		tooltipTitle: 'Circle drawing',
 		icon: <FiberManualRecordOutlinedIcon />,
 	},
-	// {
-	// 	toolSample: 'selection',
-	// 	tooltipTitle: 'Move drawn elements',
-	// 	icon: <PanToolRoundedIcon />,
-	// },
 ];
 
 const CanvasButtonDraw = (props: Props) => {

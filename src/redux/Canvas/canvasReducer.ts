@@ -1,7 +1,6 @@
 import { createAction } from '@reduxjs/toolkit';
 import { createElement } from '../../functions/createElement';
 import { updateElement } from '../../functions/updateElement';
-import { getElementAtPosition } from '../../functions/getElementAtPosition';
 import { CanvasState, canvasActionTypes, CanvasAction } from './canvasTypes';
 
 const initialState: CanvasState = {
@@ -59,43 +58,25 @@ const canvasReducer = (
 		case canvasActionTypes.SET_SELECTED_ELEMENT:
 			return { ...state, selectedElement: action.payload.selectedElement };
 		case canvasActionTypes.HANDLE_MOUSE_DOWN:
-			if (state.tool === 'selection') {
-				const element = getElementAtPosition(
-					action.payload.clientX,
-					action.payload.clientY,
-					state.elements
-				);
-				if (element) {
-					const offsetX: number = action.payload.clientX - element.x1;
-					const offsetY: number = action.payload.clientY - element.y1;
-					return {
-						...state,
-						selectedElement: { ...element, offsetX, offsetY },
-						action: 'moving',
-					};
-				}
-			} else {
-				const id = state.elements.length;
-				const element = createElement(
-					id,
-					action.payload.clientX,
-					action.payload.clientY,
-					action.payload.clientX,
-					action.payload.clientY,
-					state.width,
-					state.tool,
-					state.strokeColor,
-					state.strokeWidth,
-					state.disabledFill,
-					state.fillColor
-				);
-				return {
-					...state,
-					elements: [...state.elements, element],
-					action: 'drawing',
-				};
-			}
-			return state;
+			const id = state.elements.length;
+			const element = createElement(
+				id,
+				action.payload.clientX,
+				action.payload.clientY,
+				action.payload.clientX,
+				action.payload.clientY,
+				state.width,
+				state.tool,
+				state.strokeColor,
+				state.strokeWidth,
+				state.disabledFill,
+				state.fillColor
+			);
+			return {
+				...state,
+				elements: [...state.elements, element],
+				action: 'drawing',
+			};
 		case canvasActionTypes.HANDLE_MOUSE_MOVE:
 			if (state.action === 'drawing') {
 				const {
