@@ -2,7 +2,7 @@
 
 #### [App Deploy](https://amgod1.github.io/Innowise-Lab-Internship-Mini-paint/)
 
-#### [Task Link]()
+#### [Task Link](https://drive.google.com/file/d/1Nf_uRL4kMaRjYkNAPvjQGaanrq2JtcZc/view)
 
 ## How to run the app:
 
