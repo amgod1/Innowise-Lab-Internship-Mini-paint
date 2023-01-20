@@ -21,10 +21,10 @@
 
 ##### Canvas Component:
 
-- After drawing the component, we see a blank field and all possible tools for drawing and different actions.
-- There are the following tools: pencil, line, rectangle, circle, line thickness and color setting, fill color setting, key to cancel the last action and key to clear the field.
-- There is a key for loading a photo (size should be less than 1 megabyte). The key for sending the image to the server appears only after a successful upload of your image.
-- After a successful upload, a notification will appear and prompt you to look at the home page to see all the latest images.
+- After drawing the component, we see a **_blank field and all possible tools_** for drawing and different actions.
+- There are the following tools: **_pencil, line, rectangle, circle, line thickness and color setting, fill color setting, button to cancel the last action and button to clear the field_**.
+- There is a button for **_uploading a photo_** (size should be less than 1 megabyte). The button for **_sending the image to the server_** appears only after a successful upload of your image.
+- After a successful upload, a **_notification_** will appear and prompt you to look at the home page to **_see all the latest images_**.
 
 ##### Notes:
 
@@ -60,13 +60,13 @@
  l       l      ├── Login **_(contains child jsx components for Login)_**  
  l       l      └── SignUp **_(contains child jsx components for SignUp)_**  
  l      ├── redux **_(contains reducers for main components)_**  
- l       l      ├── App **_(contains appReducer with appTypes)_**
- l       l      ├── Canvas **_(contains canvasReducer with canvasTypes)_**
- l       l      ├── Login **_(contains loginReducer with loginTypes)_**
- l       l      └── store.ts **_(combines all reducers to store)\_**
+ l       l      ├── App **_(contains appReducer with appTypes)_**  
+ l       l      ├── Canvas **_(contains canvasReducer with canvasTypes)_**  
+ l       l      ├── Login **_(contains loginReducer with loginTypes)_**  
+ l       l      └── store.ts **_(combines all reducers to store)\_**  
  l      ├── App.tsx  
- l      ├── AppContainer.tsx **_(container component for App.tsx)_**
- l      ├── App.css **_(contains styles for scrollbar and app heigth)_**
+ l      ├── AppContainer.tsx **_(container component for App.tsx)_**  
+ l      ├── App.css **_(contains styles for scrollbar and app heigth)_**  
  l      ├── firebase.config.tsx **_(config for db connection + uses .env variables)_**  
  l      └── index.tsx  
 └── .env **_(contains db api and other secret values)_**
