@@ -6,27 +6,27 @@
 
 ## How to run the app:
 
-##### Login and Sign Up Components:
+#### Login and Sign Up Components:
 
 - When you first enter the site, you have the option of **_creating_** an account or **_logging_** into an existing account.
 - If the login or password is invalid, **_toast_** appears on the screen **_with an error message_**.
 - When a user registers **_successfully_**, he is **_automatically logged in_** and his data is saved. The same happens when **_logging into_** an existing account.
 - After a **_successful_** login, **_the todo component_** is rendered instead of the login.
 
-##### ImagesList Component:
+#### ImagesList Component:
 
 - This page **_displays all the uploaded images_** by all authorized users.
 - You can **_filter_** images by user.
 - Images are **_sorted by uploaded time_** (newest first).
 
-##### Canvas Component:
+#### Canvas Component:
 
 - After drawing the component, we see a **_blank field and all possible tools_** for drawing and different actions.
 - There are the following tools: **_pencil, line, rectangle, circle, line thickness and color setting, fill color setting, button to cancel the last action and button to clear the field_**.
 - There is a button for **_uploading a photo_** (size should be less than 1 megabyte). The button for **_sending the image to the server_** appears only after a successful upload of your image.
 - After a successful upload, a **_notification_** will appear and prompt you to look at the home page to **_see all the latest images_**.
 
-##### Notes:
+#### Notes:
 
 - For storing variables and some other data, there were created the **_redux environment_** files.
 - The **_theme_** can be changed with the header switch. **_Dark_** and **_light_** themes are available. Value saves in the localstorage.
