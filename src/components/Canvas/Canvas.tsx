@@ -86,21 +86,19 @@ const Canvas: FC<iCanvas> = ({
 		handleMouseMove(clientX, clientY);
 	};
 
-	const canvasToImage = () => {
-		const result = asyncImageUpload(
-			canvasRef.current,
-			elements,
-			width,
-			height,
-			imageUpload
-		);
-		result
-			.then(() => {
-				setPublishImage(true);
-			})
-			.catch(err => {
-				setPublishImageError(err);
-			});
+	const canvasToImage = async () => {
+		try {
+			await asyncImageUpload(
+				canvasRef.current,
+				elements,
+				width,
+				height,
+				imageUpload
+			);
+			setPublishImage(true);
+		} catch (err: any) {
+			setPublishImageError(err);
+		}
 	};
 
 	return user ? (
