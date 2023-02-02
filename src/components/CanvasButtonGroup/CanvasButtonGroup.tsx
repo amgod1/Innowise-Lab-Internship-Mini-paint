@@ -1,32 +1,14 @@
+import { FC } from 'react';
 import { ButtonGroup } from '@mui/material';
-import CanvasButtonDraw from './CanvasButtonDraw';
-import ButtonStrokeWidth from './ButtonStrokeWidth';
-import ButtonStrokeColor from './ButtonStrokeColor';
-import ButtonFillColor from './ButtonFillColor';
-import ButtonUndoDelete from './ButtonUndoDelete';
-import ButtonPublish from './ButtonPublish';
+import CanvasButtonDraw from '../Controls/CanvasButtonDraw';
+import ButtonStrokeWidth from '../Controls/ButtonStrokeWidth';
+import ButtonStrokeColor from '../Controls/ButtonStrokeColor';
+import ButtonFillColor from '../Controls/ButtonFillColor';
+import ButtonUndoDelete from '../Controls/ButtonUndoDelete';
+import ButtonPublish from '../Controls/ButtonPublish';
+import iCanvasButtonGroup from './CanvasButtonGroup.interface';
 
-interface Props {
-	imageUpload: any | null;
-	tool: string;
-	elements: any[];
-	strokeWidth: number;
-	showStrokeWidth: boolean;
-	strokeColor: string;
-	fillColor: string;
-	disabledFill: boolean;
-	setTool: (tool: string) => any;
-	setElements: (elements: any[]) => any;
-	setStrokeWidth: (strokeWidth: number) => any;
-	setShowStrokeWidth: (showStrokeWidth: boolean) => any;
-	setStrokeColor: (strokeColor: string) => any;
-	setFillColor: (fillColor: string) => any;
-	setDisabledFill: (disabledFill: boolean) => any;
-	resetAll: () => void;
-	canvasToImage: () => void;
-}
-
-const CanvasButtonGroup = (props: Props) => {
+const CanvasButtonGroup: FC<iCanvasButtonGroup> = (props) => {
 	return (
 		<ButtonGroup variant="contained" sx={{ mt: 1, mb: 2 }}>
 			<CanvasButtonDraw tool={props.tool} setTool={props.setTool} />

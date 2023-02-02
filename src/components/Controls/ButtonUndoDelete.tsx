@@ -1,10 +1,11 @@
 import { IconButton, Tooltip } from '@mui/material';
 import UndoRoundedIcon from '@mui/icons-material/UndoRounded';
 import DeleteForeverRoundedIcon from '@mui/icons-material/DeleteForeverRounded';
+import { iElement } from '../Canvas/Canvas.interface';
 
 interface Props {
-	elements: any[];
-	setElements: (elements: any[]) => any;
+	elements: iElement[];
+	setElements: (elements: iElement[]) => void;
 	resetAll: () => void;
 }
 

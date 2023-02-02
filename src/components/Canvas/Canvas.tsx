@@ -1,23 +1,41 @@
-import { useRef, useLayoutEffect, useEffect } from 'react';
-import { iCanvasProps } from './iCanvasProps';
+import { useRef, useLayoutEffect, useEffect, FC } from 'react';
 import { Alert, Box, Grid } from '@mui/material';
 import { drawElement } from '../../functions/drawElement';
 import { asyncImageUpload } from '../../functions/asyncImageUpload';
 import startedBackgroundImage from '../../assets/a4.png';
-import CanvasButtonGroup from './CanvasButtons/CanvasButtonGroup';
-import InputFile from './InputFile';
-import Uploaded from './Uploaded';
+import InputFile from '../InputFile/InputFile';
+import Uploaded from '../Uploaded/Uploaded';
 import NoAccess from '../NoAccess/NoAccess';
+import CanvasButtonGroupContainer from '../CanvasButtonGroup/CanvasButtonGroupContainer';
+import iCanvas from './Canvas.interface';
 
 const rough = require('roughjs/bundled/rough.cjs');
 
-const Canvas = (props: iCanvasProps) => {
+const Canvas: FC<iCanvas> = ({
+	user,
+	imageUpload,
+	clientWidth,
+	width,
+	height,
+	elements,
+	error,
+	uploaded,
+	setImageUpload,
+	setClientWidth,
+	setWidth,
+	setHeight,
+	handleMouseDown,
+	handleMouseMove,
+	handleMouseUp,
+	setPublishImageError,
+	setPublishImage,
+}) => {
 	const canvasRef = useRef<HTMLCanvasElement | null>(null);
 	const wrapperRef = useRef<HTMLDivElement | null>(null);
 
 	const observer = new ResizeObserver(entries => {
 		const size = entries[0].contentRect.width;
-		props.setClientWidth(size);
+		setClientWidth(size);
 	});
 
 	useEffect(() => {
@@ -25,26 +43,24 @@ const Canvas = (props: iCanvasProps) => {
 		if (canvas) {
 			canvas.style.backgroundImage = `url(${startedBackgroundImage})`;
 			canvas.style.backgroundSize = 'cover';
-			if (props.imageUpload) {
-				canvas.style.backgroundImage = `url(${URL.createObjectURL(
-					props.imageUpload
-				)})`;
+			if (imageUpload) {
+				canvas.style.backgroundImage = `url(${URL.createObjectURL(imageUpload)})`;
 				const img = new Image();
-				img.src = URL.createObjectURL(props.imageUpload);
+				img.src = URL.createObjectURL(imageUpload);
 				img.onload = function () {
-					if (props.clientWidth < img.width) {
-						const percentage = (props.clientWidth * 100) / img.width - 5;
-						props.setWidth(Math.trunc((img.width * percentage) / 100));
-						props.setHeight(Math.trunc((img.height * percentage) / 100));
+					if (clientWidth < img.width) {
+						const percentage = (clientWidth * 100) / img.width - 5;
+						setWidth(Math.trunc((img.width * percentage) / 100));
+						setHeight(Math.trunc((img.height * percentage) / 100));
 					} else {
-						props.setWidth(img.width);
-						props.setHeight(img.height);
+						setWidth(img.width);
+						setHeight(img.height);
 					}
 				};
 			}
 		}
 		if (wrapperRef?.current) observer.observe(wrapperRef?.current);
-	}, [props.imageUpload]);
+	}, [imageUpload]);
 
 	useLayoutEffect(() => {
 		const canvas = canvasRef.current;
@@ -54,39 +70,40 @@ const Canvas = (props: iCanvasProps) => {
 			if (context) {
 				context.clearRect(0, 0, canvas.width, canvas.height);
 			}
-			props.elements.forEach(el => {
+			elements.forEach(el => {
 				drawElement(roughCanvas, context, el);
 			});
 		}
-	}, [props.elements]);
+	}, [elements]);
 
-	const handleMouseDown = (e: any) => {
+	const onMouseDown = (e: React.MouseEvent<HTMLCanvasElement, MouseEvent>) => {
 		const { clientX, clientY } = e;
-		props.handleMouseDown(clientX, clientY);
+		handleMouseDown(clientX, clientY);
 	};
 
-	const handleMouseMove = (e: any) => {
+	const onMouseMove = (e: React.MouseEvent<HTMLCanvasElement, MouseEvent>) => {
 		const { clientX, clientY } = e;
-		props.handleMouseMove(clientX, clientY);
+		handleMouseMove(clientX, clientY);
 	};
 
 	const canvasToImage = () => {
 		const result = asyncImageUpload(
 			canvasRef.current,
-			props.elements,
-			props.width,
-			props.height,
-			props.imageUpload
+			elements,
+			width,
+			height,
+			imageUpload
 		);
 		result
 			.then(() => {
-				props.setPublishImage(true);
+				setPublishImage(true);
 			})
 			.catch(err => {
-				props.setPublishImageError(err);
+				setPublishImageError(err);
 			});
 	};
-	return props.user ? (
+
+	return user ? (
 		<Box ref={wrapperRef} sx={{ mt: 4 }}>
 			<Grid
 				container
@@ -94,47 +111,29 @@ const Canvas = (props: iCanvasProps) => {
 				justifyContent="flex-start"
 				alignItems="center"
 			>
-				{props.uploaded ? (
+				{uploaded ? (
 					<Uploaded />
 				) : (
 					<>
-						{props.error ? (
+						{error ? (
 							<Alert severity="error" sx={{ mb: 3 }}>
-								{props.error}
+								{error}
 							</Alert>
 						) : (
 							<canvas
-								width={props.width}
-								height={props.height}
+								width={width}
+								height={height}
 								ref={canvasRef}
 								style={{ backgroundSize: 'cover' }}
-								onMouseDown={handleMouseDown}
-								onMouseMove={handleMouseMove}
-								onMouseUp={props.handleMouseUp}
+								onMouseDown={onMouseDown}
+								onMouseMove={onMouseMove}
+								onMouseUp={handleMouseUp}
 							/>
 						)}
-						<CanvasButtonGroup
-							imageUpload={props.imageUpload}
-							tool={props.tool}
-							setTool={props.setTool}
-							strokeWidth={props.strokeWidth}
-							setStrokeWidth={props.setStrokeWidth}
-							showStrokeWidth={props.showStrokeWidth}
-							setShowStrokeWidth={props.setShowStrokeWidth}
-							strokeColor={props.strokeColor}
-							setStrokeColor={props.setStrokeColor}
-							fillColor={props.fillColor}
-							setFillColor={props.setFillColor}
-							disabledFill={props.disabledFill}
-							setDisabledFill={props.setDisabledFill}
-							elements={props.elements}
-							setElements={props.setElements}
-							resetAll={props.resetAll}
-							canvasToImage={canvasToImage}
-						/>
+						<CanvasButtonGroupContainer canvasToImage={canvasToImage} />
 						<InputFile
-							setImageUpload={props.setImageUpload}
-							setPublishImageError={props.setPublishImageError}
+							setImageUpload={setImageUpload}
+							setPublishImageError={setPublishImageError}
 						/>
 					</>
 				)}

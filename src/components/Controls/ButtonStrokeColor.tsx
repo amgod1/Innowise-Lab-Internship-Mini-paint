@@ -2,7 +2,7 @@ import { IconButton, Tooltip, Input } from '@mui/material';
 
 interface Props {
 	strokeColor: string;
-	setStrokeColor: (strokeColor: string) => any;
+	setStrokeColor: (strokeColor: string) => void;
 }
 
 const ButtonStrokeColor = (props: Props) => {
@@ -14,7 +14,9 @@ const ButtonStrokeColor = (props: Props) => {
 					id="strokeColor"
 					type="color"
 					value={props.strokeColor}
-					onChange={e => props.setStrokeColor(e.target.value)}
+					onChange={e => {
+						props.setStrokeColor(e.target.value);
+					}}
 				/>
 			</IconButton>
 		</Tooltip>

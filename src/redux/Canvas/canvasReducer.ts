@@ -15,7 +15,6 @@ const initialState: CanvasState = {
 	strokeColor: '#000000',
 	fillColor: '#000000',
 	disabledFill: true,
-	selectedElement: null,
 	error: null,
 	uploaded: false,
 };
@@ -54,8 +53,6 @@ const canvasReducer = (
 			return { ...state, fillColor: action.payload.fillColor };
 		case canvasActionTypes.SET_DISABLED_FILL:
 			return { ...state, disabledFill: action.payload.disabledFill };
-		case canvasActionTypes.SET_SELECTED_ELEMENT:
-			return { ...state, selectedElement: action.payload.selectedElement };
 		case canvasActionTypes.HANDLE_MOUSE_DOWN:
 			const id = state.elements.length;
 			const element = createElement(
@@ -106,7 +103,7 @@ const canvasReducer = (
 			}
 			return state;
 		case canvasActionTypes.HANDLE_MOUSE_UP:
-			return { ...state, selectedElement: null, action: 'none' };
+			return { ...state, action: 'none' };
 		case canvasActionTypes.RESET_ALL:
 			return {
 				...state,

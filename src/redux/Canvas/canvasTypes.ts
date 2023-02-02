@@ -33,26 +33,8 @@ export interface CanvasState {
 	strokeColor: string;
 	fillColor: string;
 	disabledFill: boolean;
-	selectedElement: iSelectedElement | null;
 	error: string | null;
 	uploaded: boolean;
-}
-
-export interface iSelectedElement {
-	id: number;
-	x1: number;
-	y1: number;
-	x2: number;
-	y2: number;
-	offsetX: number;
-	offsetY: number;
-	width: number;
-	tool: string;
-	strokeColor: string;
-	strokeWidth: number;
-	disabledFill: boolean;
-	fillColor: string;
-	roughElement: any;
 }
 
 export interface CanvasAction {

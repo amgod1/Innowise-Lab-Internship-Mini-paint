@@ -5,7 +5,7 @@ interface Props {
 	toolSample: string;
 	tooltipTitle: string;
 	icon: any;
-	setTool: (tool: string) => any;
+	setTool: (tool: string) => void;
 }
 
 const CanvasButtonSample = (props: Props) => {
@@ -13,7 +13,9 @@ const CanvasButtonSample = (props: Props) => {
 		<Tooltip title={props.tooltipTitle} placement="top" arrow>
 			<IconButton
 				color={props.tool === props.toolSample ? 'success' : 'primary'}
-				onClick={() => props.setTool(props.toolSample)}
+				onClick={() => {
+					props.setTool(props.toolSample);
+				}}
 			>
 				{props.icon}
 			</IconButton>

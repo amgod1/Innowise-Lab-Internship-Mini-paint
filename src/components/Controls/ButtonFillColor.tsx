@@ -3,8 +3,8 @@ import { IconButton, Tooltip, Input, Checkbox } from '@mui/material';
 interface Props {
 	fillColor: string;
 	disabledFill: boolean;
-	setFillColor: (fillColor: string) => any;
-	setDisabledFill: (disabledFill: boolean) => any;
+	setFillColor: (fillColor: string) => void;
+	setDisabledFill: (disabledFill: boolean) => void;
 }
 
 const ButtonFillColor = (props: Props) => {
@@ -13,7 +13,9 @@ const ButtonFillColor = (props: Props) => {
 			<Tooltip title="Fill elements" placement="top" arrow>
 				<Checkbox
 					checked={!props.disabledFill}
-					onChange={e => props.setDisabledFill(!e.target.checked)}
+					onChange={e => {
+						props.setDisabledFill(!e.target.checked);
+					}}
 				/>
 			</Tooltip>
 			<Tooltip title="Set fill color" placement="top" arrow>
@@ -24,7 +26,9 @@ const ButtonFillColor = (props: Props) => {
 							id="fillColor"
 							type="color"
 							value={props.fillColor}
-							onChange={e => props.setFillColor(e.target.value)}
+							onChange={e => {
+								props.setFillColor(e.target.value);
+							}}
 						/>
 					</IconButton>
 				) : (

@@ -8,7 +8,7 @@ import CanvasButtonSample from './CanvasButtonSample';
 
 interface Props {
 	tool: string;
-	setTool: (tool: string) => any;
+	setTool: (tool: string) => void;
 }
 
 const buttonDrawInfo = [
