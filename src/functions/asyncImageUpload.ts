@@ -1,3 +1,4 @@
+import { iElement } from './../components/Canvas/Canvas.interface';
 import { ref, uploadString } from 'firebase/storage';
 import { storage } from '../firebase.config';
 import { drawElement } from './drawElement';
@@ -8,10 +9,10 @@ const rough = require('roughjs/bundled/rough.cjs');
 
 export const asyncImageUpload = async (
 	canvas: HTMLCanvasElement | null,
-	elements: any[],
+	elements: iElement[],
 	width: number,
 	height: number,
-	imageUpload: any
+	imageUpload: File
 ) => {
 	const roughCanvas = rough.canvas(canvas);
 

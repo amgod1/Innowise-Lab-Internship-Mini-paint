@@ -74,6 +74,7 @@ const Canvas: FC<iCanvas> = ({
 				drawElement(roughCanvas, context, el);
 			});
 		}
+		console.log(elements);
 	}, [elements]);
 
 	const onMouseDown = (e: React.MouseEvent<HTMLCanvasElement, MouseEvent>) => {
@@ -88,14 +89,16 @@ const Canvas: FC<iCanvas> = ({
 
 	const canvasToImage = async () => {
 		try {
-			await asyncImageUpload(
-				canvasRef.current,
-				elements,
-				width,
-				height,
-				imageUpload
-			);
-			setPublishImage(true);
+			if (imageUpload) {
+				await asyncImageUpload(
+					canvasRef.current,
+					elements,
+					width,
+					height,
+					imageUpload
+				);
+				setPublishImage(true);
+			}
 		} catch (err: any) {
 			setPublishImageError(err);
 		}

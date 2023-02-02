@@ -9,8 +9,8 @@ import {
 export async function createUserWithConnect(
 	mail: string,
 	password: string,
-	callbackSuccess: (user: string) => any,
-	callbackError: (error: string) => any
+	callbackSuccess: (user: string) => void,
+	callbackError: (error: string) => void
 ) {
 	try {
 		const currentUser: UserCredential = await createUserWithEmailAndPassword(
@@ -34,8 +34,8 @@ export async function createUserWithConnect(
 export async function logInUserWithConnect(
 	mail: string,
 	password: string,
-	callbackSuccess: (user: string) => any,
-	callbackError: (error: string) => any
+	callbackSuccess: (user: string) => void,
+	callbackError: (error: string) => void
 ) {
 	try {
 		const currentUser: UserCredential = await signInWithEmailAndPassword(
@@ -58,7 +58,7 @@ export async function logInUserWithConnect(
 
 export async function logOutUserWithConnect(
 	callbackSuccess: () => void,
-	callbackError: (error: string) => any
+	callbackError: (error: string) => void
 ) {
 	try {
 		await signOut(auth);

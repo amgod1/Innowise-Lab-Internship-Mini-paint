@@ -29,7 +29,7 @@ export function updateElement(
 	);
 
 	const elementsCopy = [...elements];
-	if (tool === 'pencil') {
+	if (tool === 'pencil' && elementsCopy[id].points) {
 		const diff: number = (document.body.clientWidth - width) / 2;
 		const scrollDiff: number = Math.trunc(document.documentElement.scrollTop);
 

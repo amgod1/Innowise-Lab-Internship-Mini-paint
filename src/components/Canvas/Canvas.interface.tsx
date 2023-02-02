@@ -18,20 +18,32 @@ export default interface iCanvas {
 	setPublishImage: (result: boolean) => void;
 }
 
-export interface iElement {
-	disabledFill?: boolean;
-	fillColor?: string;
+export type iElement = [iElementPencil, iElementFigure]
+
+export interface iElementPencil {
 	id: number;
-	points?: iPoints[];
-	roughElement?: unknown;
+	points: iPoints[];
 	strokeColor: string;
 	strokeWidth: number;
 	tool: string;
 	width: number;
 	x1: number;
-	x2?: number;
 	y1: number;
-	y2?: number;
+}
+
+export interface iElementFigure {
+	disabledFill: boolean;
+	fillColor: string;
+	id: number;
+	roughElement: unknown;
+	strokeColor: string;
+	strokeWidth: number;
+	tool: string;
+	width: number;
+	x1: number;
+	x2: number;
+	y1: number;
+	y2: number;
 }
 
 interface iPoints {
