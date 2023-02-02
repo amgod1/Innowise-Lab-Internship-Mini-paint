@@ -1,4 +1,3 @@
-import { createAction } from '@reduxjs/toolkit';
 import { AppState, appActionTypes, AppAction } from './appTypes';
 
 const initialState: AppState = {
@@ -14,14 +13,5 @@ const appReducer = (state = initialState, action: AppAction): AppState => {
 			return state;
 	}
 };
-
-// Action Creators
-
-export const setDarkModeAC = createAction(
-	appActionTypes.SET_DARK_MODE,
-	function prepare(darkMode) {
-		return { payload: { darkMode } };
-	}
-);
 
 export default appReducer;

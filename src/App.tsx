@@ -4,11 +4,10 @@ import CssBaseline from '@mui/material/CssBaseline';
 import './App.css';
 
 import Container from '@mui/material/Container';
-import LoginContainer from './components/Login/LoginContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
-import SignUpContainer from './components/SignUp/SignUpContainer';
 import CanvasContainer from './components/Canvas/CanvasConatiner';
 import ImagesListContainer from './components/ImagesList/ImagesListContainer';
+import AuthorizationContainer from './components/Authorization/AuthorizationContainer';
 
 interface Props {
 	darkMode: boolean;
@@ -29,8 +28,8 @@ const App = (props: Props) => {
 					<HeaderContainer />
 					<Routes>
 						<Route path="/" element={<ImagesListContainer />} />
-						<Route path="/login" element={<LoginContainer />} />
-						<Route path="/signup" element={<SignUpContainer />} />
+						<Route path="/login" element={<AuthorizationContainer type={true} />} />
+						<Route path="/signup" element={<AuthorizationContainer type={false} />} />
 						<Route path="/canvas" element={<CanvasContainer />} />
 					</Routes>
 				</Container>

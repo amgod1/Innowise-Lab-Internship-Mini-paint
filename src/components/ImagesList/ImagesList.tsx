@@ -4,7 +4,7 @@ import { Box, Button, Grid, Typography } from '@mui/material';
 import { getDownloadURL, listAll, ref } from 'firebase/storage';
 import { storage } from '../../firebase.config';
 import { decodeDate } from '../../functions/decodeDate';
-import NoAccess from '../Canvas/NoAccess';
+import NoAccess from '../NoAccess/NoAccess';
 import CheckboxUser from './CheckboxUser';
 
 interface Props {

@@ -7,7 +7,7 @@ import startedBackgroundImage from '../../assets/a4.png';
 import CanvasButtonGroup from './CanvasButtons/CanvasButtonGroup';
 import InputFile from './InputFile';
 import Uploaded from './Uploaded';
-import NoAccess from './NoAccess';
+import NoAccess from '../NoAccess/NoAccess';
 
 const rough = require('roughjs/bundled/rough.cjs');
 

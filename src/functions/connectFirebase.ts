@@ -19,7 +19,6 @@ export async function createUserWithConnect(
 			password
 		);
 		if (auth.currentUser) {
-			console.log('REGISTERED');
 			localStorage.setItem(
 				'user',
 				currentUser?.user?.email ? currentUser?.user?.email : ''
@@ -45,7 +44,6 @@ export async function logInUserWithConnect(
 			password
 		);
 		if (auth.currentUser) {
-			console.log('LOGGED IN');
 			localStorage.setItem(
 				'user',
 				currentUser?.user?.email ? currentUser?.user?.email : ''
@@ -65,7 +63,6 @@ export async function logOutUserWithConnect(
 	try {
 		await signOut(auth);
 		if (!auth.currentUser) {
-			console.log('LOGING OUT');
 			localStorage.removeItem('user');
 			callbackSuccess();
 		}

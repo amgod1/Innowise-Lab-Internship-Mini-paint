@@ -1,17 +1,25 @@
-import { Link } from 'react-router-dom';
-import { Paper, IconButton, Button, Box, Switch } from '@mui/material';
+import { FC } from 'react';
 import HomeIcon from '@mui/icons-material/Home';
+import { Paper, IconButton, Button, Box, Switch } from '@mui/material';
+import { Link } from 'react-router-dom';
 import { logOutUserWithConnect } from '../../functions/connectFirebase';
+import iHeader from './Header.interface';
 
-interface Props {
-	user: string;
-	darkMode: boolean;
-	onLogOutAccountClick: () => void;
-	onSetError: (error: string) => any;
-	setDarkMode: (darkMode: boolean) => void;
-}
+const Header: FC<iHeader> = ({
+	user,
+	darkMode,
+	onLogOutClick,
+	onSetError,
+	setDarkMode,
+}) => {
+	const setDarkModeHandle = () => {
+		setDarkMode(!darkMode);
+	};
 
-const Header = (props: Props) => {
+	const onLogOutHandle = async () => {
+		await logOutUserWithConnect(onLogOutClick, onSetError);
+	};
+
 	return (
 		<Paper
 			sx={{
@@ -34,23 +42,9 @@ const Header = (props: Props) => {
 					</Link>
 				</Box>
 				<Box>
-					<Switch
-						checked={props.darkMode}
-						onChange={() => {
-							props.setDarkMode(!props.darkMode);
-						}}
-					/>
-					{props.user ? (
-						<Button
-							variant="contained"
-							color="primary"
-							onClick={async () => {
-								await logOutUserWithConnect(
-									props.onLogOutAccountClick,
-									props.onSetError
-								);
-							}}
-						>
+					<Switch checked={darkMode} onChange={setDarkModeHandle} />
+					{user ? (
+						<Button variant="contained" color="primary" onClick={onLogOutHandle}>
 							Log Out
 						</Button>
 					) : (

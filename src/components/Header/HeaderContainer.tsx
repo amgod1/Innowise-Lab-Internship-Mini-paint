@@ -1,22 +1,24 @@
+import { FC } from 'react';
+import { useAppDispatch } from '../../hooks/useAppDispatch';
+import { useAppSelector } from '../../hooks/useAppSelector';
+import {
+	logOutAccountAC,
+	setErrorAC,
+} from '../../redux/Login/LoginActionCreators';
+import { setDarkModeAC } from '../../redux/App/appActionCreators';
 import Header from './Header';
-import { connect } from 'react-redux';
-import { logOutAccountAC, setErrorAC } from '../../redux/Login/loginReducer';
-import { setDarkModeAC } from '../../redux/App/appReducer';
 
-const mapStateToProps = (state: any) => {
-	return {
-		user: state.loginPage.user,
-		darkMode: state.app.darkMode,
-	};
+const HeaderContainer: FC = () => {
+	const dispatch = useAppDispatch();
+
+	return (
+		<Header
+			user={useAppSelector(state => state.loginPage.user)}
+			darkMode={useAppSelector(state => state.app.darkMode)}
+			onLogOutClick={() => dispatch(logOutAccountAC())}
+			onSetError={(error: string) => dispatch(setErrorAC(error))}
+			setDarkMode={(darkMode: boolean) => dispatch(setDarkModeAC(darkMode))}
+		/>
+	);
 };
-
-const mapDispatchToProps = (dispatch: any) => {
-	return {
-		onLogOutAccountClick: () => dispatch(logOutAccountAC()),
-		onSetError: (error: string) => dispatch(setErrorAC(error)),
-		setDarkMode: (darkMode: boolean) => dispatch(setDarkModeAC(darkMode)),
-	};
-};
-
-const HeaderContainer = connect(mapStateToProps, mapDispatchToProps)(Header);
 export default HeaderContainer;

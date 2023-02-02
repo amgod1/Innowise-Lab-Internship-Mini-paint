@@ -20,7 +20,7 @@ import {
 	handleMouseMoveAC,
 	setPublishImageAC,
 	setPublishImageErrorAC,
-} from '../../redux/Canvas/canvasReducer';
+} from '../../redux/Canvas/canvasActionCreators';
 import { iSelectedElement } from '../../redux/Canvas/canvasTypes';
 
 const mapStateToProps = (state: any) => {
